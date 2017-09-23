@@ -2,6 +2,7 @@
  * 
  * Javascript is an object based programing.
  * It is both a compilation(scope chain is created in this phase) and interpretation(values are assigned using scope in this phase) language.
+ * Javascript is single threaded.(Hence event cycle is used)
  * Javascript was standardised by ECMA international for cross browser compatibility and hence now it's ECMAScript.
  * Current version is ECMAScript-2015(formerly ES6)
  * TypeScript simply provides types to variable and warns us against error that would have been missed otherwise
@@ -15,11 +16,13 @@
  * More on transpiler here: https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them
  * 
  * Topics on ES5
- * 1. variable scopes and closures,strict mode.
+ * 1. variable scopes(use IIFE) and closures(what problem it solves?Ans. creating public and private var),strict mode.
  * 2. objects and prototype.(vanilla JS)
- * 3. type coersion/conversion, ===(right way of comparing both value and type) and ==(not a better way as type coersion occurs) 
- * 4. How to create classes and limit variable scope using function in javascript.
- * 5. this reference
+ * 3. callback functions
+ * 4. Constructor in javascript(new keyword) and difference between constructor and functions.
+ * 5. type coersion/conversion, ===(right way of comparing both value and type) and ==(not a better way as type coersion occurs) 
+ * 6. How to create classes and limit variable scope using function in javascript.
+ * 7. this keyword in javascript.
  * 
  * javascript can bind itself to DOM events like mousehover,onclick etc. 
  * In angular it is called event binding.
@@ -57,11 +60,11 @@ console.log();
 /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /**
- * 'a' will be available inside function as well(Global scope).
- * So to limit 'a'scope we use function(IIFE). 
- * Using global variable is a bad practice and must not be done unless heavily required.
- * A global object is a window object and hence window will contain global value unless it is closed.
- * This causes the problem with the global object.
+ * 'a' will be available inside function as well(Global scope). So to limit
+ * 'a'scope we use function(IIFE). Using global variable is a bad practice and
+ * must not be done unless heavily required. A global object is a window object
+ * and hence window will contain global value unless it is closed. This causes
+ * the problem with the global object.
  */
 var a = 5;
 
@@ -87,7 +90,7 @@ function method(message, callback) {
 
 /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-/** An object can contain variables,array,maps,set,functions */
+/** An object can contain variables,array,maps,set,functions,other objects */
 var object = {
 	'varname1' : 'obj-value1',
 	'varname2' : 'obj-value2',
@@ -95,7 +98,8 @@ var object = {
 	'funcname' : function() {
 		console.log('Hi from named function!!!');
 	},
-	//bounds this function with var named 'function' in the window object during compilation step.
+	// bounds this function with var named 'function' in the window object
+	// during compilation step.
 	function() {
 		console.log('Hi from un-named function!!!');
 	}
