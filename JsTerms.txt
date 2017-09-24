@@ -1,0 +1,18 @@
+Some Terminologies for JavaScript
+1. Asynchronous/Synchronous
+2. Single/multithreaded
+3. Non-Blocking I/O
+4. EventLoop(EventQueue)
+5. Execution stack
+
+Javascript is single threaded for your code(other threads work behind the scenes for async calls)
+Javascript is Asynchronous when other calls for events using event loop[Eventlistener,binding].
+examples of events I/O operations,CPU http calls etc. 
+But synchronous from execution perspective[using execution stack].
+
+How javascript works as Non-Blocking I/O?
+Javascript pushes the callback function into the event queue whenever their is a event happening and continues to execute from the execution stack until it gets empty.
+Once execution stack is empty it looks in the event queue for any event waiting to be processed. If yes then pops and pushes callback function into execution stack
+and starts processing.This is repeated until both are empty.
+
+Node.js involves many API for asynchronous calls.
